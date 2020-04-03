@@ -8,5 +8,8 @@ import com.sir.projet.bean.Controle;
 
 @Repository
 public interface ControleRepository extends JpaRepository<Controle, Long>{
+    Controle FindByLibelle(String libelle);
+    int deleteByLibelle(String libelle);
+    
 
 }
