@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 @Entity
@@ -17,6 +18,7 @@ public class Controle implements Serializable {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 		    private Long id;
 	   private String libelle;
+          @Temporal(javax.persistence.TemporalType.DATE)
 	   private Date dateExam;
 	   private String duree;
 	   private int coef;

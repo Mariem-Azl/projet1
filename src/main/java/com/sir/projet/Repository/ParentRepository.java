@@ -8,5 +8,7 @@ import com.sir.projet.bean.Parent;
 
 @Repository
 public interface ParentRepository extends JpaRepository<Parent, Long>{
-
+ 
+    Parent findByCin(String cin);
+    int deleteByCin(String cin);
 }

@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 @Entity
 public class Etudiant implements Serializable {
@@ -16,10 +17,21 @@ public class Etudiant implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
+        @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
     private String lieuNaissance;
     private String sex;
     private String cne;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
 	public Long getId() {
 		return id;
 	}

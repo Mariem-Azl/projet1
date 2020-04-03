@@ -14,6 +14,55 @@ public class Administrateur implements Serializable {
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 		    private Long id;
+          
+          private String nom;
+    private String prenom;
+    private String paswword;
+    private String login;
+
+    private String code;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    
+    
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getPaswword() {
+        return paswword;
+    }
+
+    public void setPaswword(String paswword) {
+        this.paswword = paswword;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+    
 
 	public Long getId() {
 		return id;

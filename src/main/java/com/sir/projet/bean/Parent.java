@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 
 @Entity
@@ -19,8 +20,19 @@ public class Parent implements Serializable {
 	    private String prenom;
 	    private String tele;
 	    private String adresse;
+         @Temporal(javax.persistence.TemporalType.DATE)
 	    private Date dateNaisssance;
 	    private String lieuNaissance;
+            private String cin;
+
+    public String getCin() {
+        return cin;
+    }
+
+    public void setCni(String cni) {
+        this.cin = cin;
+    }
+            
 		public Long getId() {
 			return id;
 		}

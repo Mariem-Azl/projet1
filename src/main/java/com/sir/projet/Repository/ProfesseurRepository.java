@@ -9,4 +9,6 @@ import com.sir.projet.bean.Professeur;
 @Repository
 public interface ProfesseurRepository extends JpaRepository<Professeur, Long>{
 
+    Professeur findByCin(String cin);
+     int deleteByCin(String cin);
 }

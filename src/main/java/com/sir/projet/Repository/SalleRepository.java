@@ -9,4 +9,6 @@ import com.sir.projet.bean.Salle;
 @Repository
 public interface SalleRepository extends JpaRepository<Salle, Long>{
 
+    Salle findByNumero(String numero);
+     int deleteByNumero(String numero);
 }
