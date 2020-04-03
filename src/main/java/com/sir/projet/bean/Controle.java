@@ -2,11 +2,13 @@ package com.sir.projet.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
 
@@ -16,15 +18,45 @@ public class Controle implements Serializable {
 	
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.AUTO)
-		    private Long id;
+           private Long id;
+
+    public Matiere getMatiere() {
+        return matiere;
+    }
+
+    public void setMatiere(Matiere matiere) {
+        this.matiere = matiere;
+    }
 	   private String libelle;
-          @Temporal(javax.persistence.TemporalType.DATE)
+            @Temporal(javax.persistence.TemporalType.DATE)
 	   private Date dateExam;
 	   private String duree;
 	   private int coef;
+           @ManyToOne
+           private Matiere matiere;
+           @ManyToOne
+           private Salle salle;
+           @ManyToOne
+           private Professeur professeur;
 	public Long getId() {
 		return id;
 	}
+
+    public Salle getSalle() {
+        return salle;
+    }
+
+    public void setSalle(Salle salle) {
+        this.salle = salle;
+    }
+
+    public Professeur getProfesseur() {
+        return professeur;
+    }
+
+    public void setProfesseur(Professeur professeur) {
+        this.professeur = professeur;
+    }
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -52,57 +84,66 @@ public class Controle implements Serializable {
 	public void setCoef(int coef) {
 		this.coef = coef;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + coef;
-		result = prime * result + ((dateExam == null) ? 0 : dateExam.hashCode());
-		result = prime * result + ((duree == null) ? 0 : duree.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Controle other = (Controle) obj;
-		if (coef != other.coef)
-			return false;
-		if (dateExam == null) {
-			if (other.dateExam != null)
-				return false;
-		} else if (!dateExam.equals(other.dateExam))
-			return false;
-		if (duree == null) {
-			if (other.duree != null)
-				return false;
-		} else if (!duree.equals(other.duree))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (libelle == null) {
-			if (other.libelle != null)
-				return false;
-		} else if (!libelle.equals(other.libelle))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "Controle [id=" + id + ", libelle=" + libelle + ", dateExam=" + dateExam + ", duree=" + duree + ", coef="
-				+ coef + "]";
-	}
-	   
-	   
-	   
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 41 * hash + Objects.hashCode(this.id);
+        hash = 41 * hash + Objects.hashCode(this.libelle);
+        hash = 41 * hash + Objects.hashCode(this.dateExam);
+        hash = 41 * hash + Objects.hashCode(this.duree);
+        hash = 41 * hash + this.coef;
+        hash = 41 * hash + Objects.hashCode(this.matiere);
+        hash = 41 * hash + Objects.hashCode(this.salle);
+        hash = 41 * hash + Objects.hashCode(this.professeur);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Controle other = (Controle) obj;
+        if (this.coef != other.coef) {
+            return false;
+        }
+        if (!Objects.equals(this.libelle, other.libelle)) {
+            return false;
+        }
+        if (!Objects.equals(this.duree, other.duree)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateExam, other.dateExam)) {
+            return false;
+        }
+        if (!Objects.equals(this.matiere, other.matiere)) {
+            return false;
+        }
+        if (!Objects.equals(this.salle, other.salle)) {
+            return false;
+        }
+        if (!Objects.equals(this.professeur, other.professeur)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Controle{" + "id=" + id + ", libelle=" + libelle + ", dateExam=" + dateExam + ", duree=" + duree + ", coef=" + coef + ", matiere=" + matiere + ", salle=" + salle + ", professeur=" + professeur + '}';
+    }
+
+    
+    
 
 }

@@ -2,12 +2,15 @@ package com.sir.projet.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Etudiant implements Serializable {
@@ -17,21 +20,31 @@ public class Etudiant implements Serializable {
     private Long id;
     private String nom;
     private String prenom;
-        @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
     private String lieuNaissance;
     private String sex;
     private String cne;
     private String password;
+    @OneToMany(mappedBy = "etudiant")
+    private List<ControleDetails> controleDetails;
+    @ManyToOne
+    private Parent parent;
 
-    public String getPassword() {
-        return password;
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public List<ControleDetails> getControleDetails() {
+        return controleDetails;
     }
-    
+
+    public void setControleDetails(List<ControleDetails> controleDetails) {
+        this.controleDetails = controleDetails;
+    }
+
+    public void setParent(Parent parent) {
+        this.parent = parent;
+    }
 	public Long getId() {
 		return id;
 	}
@@ -77,72 +90,81 @@ public class Etudiant implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cne == null) ? 0 : cne.hashCode());
-		result = prime * result + ((dateNaissance == null) ? 0 : dateNaissance.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lieuNaissance == null) ? 0 : lieuNaissance.hashCode());
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		result = prime * result + ((sex == null) ? 0 : sex.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Etudiant other = (Etudiant) obj;
-		if (cne == null) {
-			if (other.cne != null)
-				return false;
-		} else if (!cne.equals(other.cne))
-			return false;
-		if (dateNaissance == null) {
-			if (other.dateNaissance != null)
-				return false;
-		} else if (!dateNaissance.equals(other.dateNaissance))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lieuNaissance == null) {
-			if (other.lieuNaissance != null)
-				return false;
-		} else if (!lieuNaissance.equals(other.lieuNaissance))
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		if (sex == null) {
-			if (other.sex != null)
-				return false;
-		} else if (!sex.equals(other.sex))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "Etudiant [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance
-				+ ", lieuNaissance=" + lieuNaissance + ", sex=" + sex + ", cne=" + cne + "]";
-	}
-    
-    
-    
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + Objects.hashCode(this.id);
+        hash = 13 * hash + Objects.hashCode(this.nom);
+        hash = 13 * hash + Objects.hashCode(this.prenom);
+        hash = 13 * hash + Objects.hashCode(this.dateNaissance);
+        hash = 13 * hash + Objects.hashCode(this.lieuNaissance);
+        hash = 13 * hash + Objects.hashCode(this.sex);
+        hash = 13 * hash + Objects.hashCode(this.cne);
+        hash = 13 * hash + Objects.hashCode(this.password);
+        hash = 13 * hash + Objects.hashCode(this.controleDetails);
+        hash = 13 * hash + Objects.hashCode(this.parent);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Etudiant other = (Etudiant) obj;
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.lieuNaissance, other.lieuNaissance)) {
+            return false;
+        }
+        if (!Objects.equals(this.sex, other.sex)) {
+            return false;
+        }
+        if (!Objects.equals(this.cne, other.cne)) {
+            return false;
+        }
+        if (!Objects.equals(this.password, other.password)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateNaissance, other.dateNaissance)) {
+            return false;
+        }
+        if (!Objects.equals(this.controleDetails, other.controleDetails)) {
+            return false;
+        }
+        if (!Objects.equals(this.parent, other.parent)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Etudiant{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", lieuNaissance=" + lieuNaissance + ", sex=" + sex + ", cne=" + cne + ", password=" + password + ", controleDetails=" + controleDetails + ", parent=" + parent + '}';
+    }
+
+       
 
 }

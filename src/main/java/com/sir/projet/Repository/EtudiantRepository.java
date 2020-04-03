@@ -8,5 +8,8 @@ import com.sir.projet.bean.Etudiant;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long>{
+    Etudiant findByCne(String cne);
+    int DeleteByCne(String cne);
+    
 
 }

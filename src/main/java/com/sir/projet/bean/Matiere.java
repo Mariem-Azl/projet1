@@ -1,11 +1,14 @@
 package com.sir.projet.bean;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 @Entity
@@ -15,6 +18,7 @@ public class Matiere implements Serializable{
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 		    private Long id;
 	    private String libelle;
+            
 		public Long getId() {
 			return id;
 		}
@@ -27,39 +31,55 @@ public class Matiere implements Serializable{
 		public void setLibelle(String libelle) {
 			this.libelle = libelle;
 		}
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			result = prime * result + ((libelle == null) ? 0 : libelle.hashCode());
-			return result;
-		}
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Matiere other = (Matiere) obj;
-			if (id == null) {
-				if (other.id != null)
-					return false;
-			} else if (!id.equals(other.id))
-				return false;
-			if (libelle == null) {
-				if (other.libelle != null)
-					return false;
-			} else if (!libelle.equals(other.libelle))
-				return false;
-			return true;
-		}
-		@Override
-		public String toString() {
-			return "Matiere [id=" + id + ", libelle=" + libelle + "]";
-		}
-	   
+                @OneToMany(mappedBy = "matiere")
+                List<Controle> controles;
 
+    public List<Controle> getControles() {
+        return controles;
+    }
+
+    public void setControles(List<Controle> controles) {
+        this.controles = controles;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + Objects.hashCode(this.id);
+        hash = 11 * hash + Objects.hashCode(this.libelle);
+        hash = 11 * hash + Objects.hashCode(this.controles);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Matiere other = (Matiere) obj;
+        if (!Objects.equals(this.libelle, other.libelle)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.controles, other.controles)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Matiere{" + "id=" + id + ", libelle=" + libelle + ", controles=" + controles + '}';
+    }
+
+                   
+		
 }

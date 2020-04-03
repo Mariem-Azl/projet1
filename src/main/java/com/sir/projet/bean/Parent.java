@@ -2,12 +2,15 @@ package com.sir.projet.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 
 @Entity
@@ -16,20 +19,39 @@ public class Parent implements Serializable {
 	 @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	    private Long id;
+            private String cin;
 	    private String nom;
 	    private String prenom;
 	    private String tele;
 	    private String adresse;
-         @Temporal(javax.persistence.TemporalType.DATE)
 	    private Date dateNaisssance;
 	    private String lieuNaissance;
-            private String cin;
+         @OneToMany(mappedBy = "parent")
+         List<Etudiant> etudiants;
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public List<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public void setEtudiants(List<Etudiant> etudiants) {
+        this.etudiants = etudiants;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+            @OneToOne(mappedBy = "parent")
+            private Etudiant etudiant;
 
     public String getCin() {
         return cin;
     }
 
-    public void setCni(String cni) {
+    public void setCin(String cin) {
         this.cin = cin;
     }
             
@@ -75,72 +97,74 @@ public class Parent implements Serializable {
 		public void setLieuNaissance(String lieuNaissance) {
 			this.lieuNaissance = lieuNaissance;
 		}
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-			result = prime * result + ((dateNaisssance == null) ? 0 : dateNaisssance.hashCode());
-			result = prime * result + ((id == null) ? 0 : id.hashCode());
-			result = prime * result + ((lieuNaissance == null) ? 0 : lieuNaissance.hashCode());
-			result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-			result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-			result = prime * result + ((tele == null) ? 0 : tele.hashCode());
-			return result;
-		}
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			Parent other = (Parent) obj;
-			if (adresse == null) {
-				if (other.adresse != null)
-					return false;
-			} else if (!adresse.equals(other.adresse))
-				return false;
-			if (dateNaisssance == null) {
-				if (other.dateNaisssance != null)
-					return false;
-			} else if (!dateNaisssance.equals(other.dateNaisssance))
-				return false;
-			if (id == null) {
-				if (other.id != null)
-					return false;
-			} else if (!id.equals(other.id))
-				return false;
-			if (lieuNaissance == null) {
-				if (other.lieuNaissance != null)
-					return false;
-			} else if (!lieuNaissance.equals(other.lieuNaissance))
-				return false;
-			if (nom == null) {
-				if (other.nom != null)
-					return false;
-			} else if (!nom.equals(other.nom))
-				return false;
-			if (prenom == null) {
-				if (other.prenom != null)
-					return false;
-			} else if (!prenom.equals(other.prenom))
-				return false;
-			if (tele == null) {
-				if (other.tele != null)
-					return false;
-			} else if (!tele.equals(other.tele))
-				return false;
-			return true;
-		}
-		@Override
-		public String toString() {
-			return "Parent [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", tele=" + tele + ", adresse="
-					+ adresse + ", dateNaisssance=" + dateNaisssance + ", lieuNaissance=" + lieuNaissance + "]";
-		}
-	    
-	    
+
+    @Override
+    public String toString() {
+        return "Parent{" + "id=" + id + ", cin=" + cin + ", nom=" + nom + ", prenom=" + prenom + ", tele=" + tele + ", adresse=" + adresse + ", dateNaisssance=" + dateNaisssance + ", lieuNaissance=" + lieuNaissance + ", etudiants=" + etudiants + ", etudiant=" + etudiant + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 89 * hash + Objects.hashCode(this.id);
+        hash = 89 * hash + Objects.hashCode(this.cin);
+        hash = 89 * hash + Objects.hashCode(this.nom);
+        hash = 89 * hash + Objects.hashCode(this.prenom);
+        hash = 89 * hash + Objects.hashCode(this.tele);
+        hash = 89 * hash + Objects.hashCode(this.adresse);
+        hash = 89 * hash + Objects.hashCode(this.dateNaisssance);
+        hash = 89 * hash + Objects.hashCode(this.lieuNaissance);
+        hash = 89 * hash + Objects.hashCode(this.etudiants);
+        hash = 89 * hash + Objects.hashCode(this.etudiant);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Parent other = (Parent) obj;
+        if (!Objects.equals(this.cin, other.cin)) {
+            return false;
+        }
+        if (!Objects.equals(this.nom, other.nom)) {
+            return false;
+        }
+        if (!Objects.equals(this.prenom, other.prenom)) {
+            return false;
+        }
+        if (!Objects.equals(this.tele, other.tele)) {
+            return false;
+        }
+        if (!Objects.equals(this.adresse, other.adresse)) {
+            return false;
+        }
+        if (!Objects.equals(this.lieuNaissance, other.lieuNaissance)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.dateNaisssance, other.dateNaisssance)) {
+            return false;
+        }
+        if (!Objects.equals(this.etudiants, other.etudiants)) {
+            return false;
+        }
+        if (!Objects.equals(this.etudiant, other.etudiant)) {
+            return false;
+        }
+        return true;
+    }
+
+   		    
 	    
 
 }
