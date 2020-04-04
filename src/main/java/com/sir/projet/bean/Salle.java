@@ -19,7 +19,16 @@ public class Salle implements Serializable {
 	    @GeneratedValue(strategy = GenerationType.AUTO)
 		    private Long id;
 	   private String numero;
-	   private String capacité;
+	   private int capacite;
+
+    public int getCapacite() {
+        return capacite;
+    }
+
+    public void setCapacite(int capacite) {
+        this.capacite = capacite;
+    }
+           
            @OneToMany(mappedBy = "salle")
            List<Controle> controlesSalle;
 	public Long getId() {
@@ -34,12 +43,8 @@ public class Salle implements Serializable {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
-	public String getCapacité() {
-		return capacité;
-	}
-	public void setCapacité(String capacité) {
-		this.capacité = capacité;
-	}
+
+  
 
     public List<Controle> getControlesSalle() {
         return controlesSalle;
@@ -54,7 +59,7 @@ public class Salle implements Serializable {
         int hash = 7;
         hash = 41 * hash + Objects.hashCode(this.id);
         hash = 41 * hash + Objects.hashCode(this.numero);
-        hash = 41 * hash + Objects.hashCode(this.capacité);
+        hash = 41 * hash + Objects.hashCode(this.capacite);
         hash = 41 * hash + Objects.hashCode(this.controlesSalle);
         return hash;
     }
@@ -74,7 +79,7 @@ public class Salle implements Serializable {
         if (!Objects.equals(this.numero, other.numero)) {
             return false;
         }
-        if (!Objects.equals(this.capacité, other.capacité)) {
+        if (!Objects.equals(this.capacite, other.capacite)) {
             return false;
         }
         if (!Objects.equals(this.id, other.id)) {
@@ -88,7 +93,7 @@ public class Salle implements Serializable {
 
     @Override
     public String toString() {
-        return "Salle{" + "id=" + id + ", numero=" + numero + ", capacit\u00e9=" + capacité + ", controlesSalle=" + controlesSalle + '}';
+        return "Salle{" + "id=" + id + ", numero=" + numero + ", capacit\u00e9=" + capacite+ ", controlesSalle=" + controlesSalle + '}';
     }
 	
 }

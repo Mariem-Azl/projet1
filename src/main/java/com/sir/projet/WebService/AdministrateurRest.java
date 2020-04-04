@@ -34,6 +34,11 @@ public class AdministrateurRest {
     public Administrateur findByCode( @PathVariable String code) {
         return administrateurService.findByCode(code);
     }
+
+    @PostMapping("/login/{login}/password/{password}/code/{code}")
+    public int validate(@PathVariable String login,@PathVariable String password,@PathVariable String code) {
+        return administrateurService.validate(login, password, code);
+    }
     
     
     

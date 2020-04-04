@@ -13,8 +13,8 @@ import java.util.List;
  * @author HP
  */
 public interface SalleService {
-    
-     int save(Salle salle);
+
+public int save(Salle salle);    
     List<Salle>findAll();
     Salle findByNumero(String numero);
       int deleteByNumero(String numero);

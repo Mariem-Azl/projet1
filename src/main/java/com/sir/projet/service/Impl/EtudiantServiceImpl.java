@@ -8,7 +8,6 @@ package com.sir.projet.Service.Impl;
 import com.sir.projet.Repository.EtudiantRepository;
 import com.sir.projet.Service.facade.ParentService;
 import com.sir.projet.bean.Controle;
-import com.sir.projet.bean.ControleDetails;
 import com.sir.projet.bean.Etudiant;
 import com.sir.projet.bean.Parent;
 import com.sir.projet.service.facade.EtudiantService;
@@ -37,8 +36,8 @@ public class EtudiantServiceImpl implements EtudiantService {
 
     @Override
     @Transactional
-    public int DeleteByCne(String cne) {
-      return etudiantRepository.DeleteByCne(cne);    }
+    public int deleteByCne(String cne) {
+      return etudiantRepository.deleteByCne(cne);    }
 
     @Override
     public int save(Etudiant etudiant) {        

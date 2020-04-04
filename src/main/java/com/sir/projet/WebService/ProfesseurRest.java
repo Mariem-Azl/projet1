@@ -6,6 +6,7 @@
 package com.sir.projet.WebService;
 
 import com.sir.projet.Service.facade.ProfesseurService;
+import com.sir.projet.bean.Etudiant;
 import com.sir.projet.bean.Professeur;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,23 @@ private ProfesseurService professeurService;
         return professeurService.deleteByCin(cin);
     }
 
+    @GetMapping("libelle/{libelle}")
+    public Professeur findByMatiereLibelle(@PathVariable String libelle) {
+        return professeurService.findByMatiereLibelle(libelle);
+    }
+
+    @PostMapping("cin/{cin}/password/{password}")
+    public int validate(@PathVariable String cin,@PathVariable String password) {
+        return professeurService.validate(cin, password);
+    }
+
+    @GetMapping("nom/{nom}")
+    public List<Etudiant> findByProfesseurNom(@PathVariable String nom) {
+        return professeurService.findByProfesseurNom(nom);
+    }
+    
+    
+
+    
     
 }

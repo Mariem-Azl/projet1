@@ -12,14 +12,28 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
-
 @Entity
 public class Controle implements Serializable {
 
-	
-	  @Id
-	    @GeneratedValue(strategy = GenerationType.AUTO)
-           private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String libelle;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    private Date dateExam;
+    private String duree;
+    private int coef;
+    @ManyToOne
+    private Matiere matiere;
+    @ManyToOne
+    private Salle salle;
+    @ManyToOne
+    private Professeur professeur;
+    @ManyToOne
+    private Etudiant etudiant;
+    private Double note;
+    private Double noteAvecCoef;
 
     public Matiere getMatiere() {
         return matiere;
@@ -28,21 +42,6 @@ public class Controle implements Serializable {
     public void setMatiere(Matiere matiere) {
         this.matiere = matiere;
     }
-	   private String libelle;
-           @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
-	   private Date dateExam;
-	   private String duree;
-	   private int coef;
-           @ManyToOne
-           private Matiere matiere;
-           @ManyToOne
-           private Salle salle;
-           @ManyToOne
-           private Professeur professeur;
-           @ManyToOne
-           private Etudiant etudiant;
-           private Double note;
-	   private Double noteAvecCoef;
 
     public Long getId() {
         return id;
@@ -193,7 +192,5 @@ public class Controle implements Serializable {
     public String toString() {
         return "Controle{" + "id=" + id + ", libelle=" + libelle + ", dateExam=" + dateExam + ", duree=" + duree + ", coef=" + coef + ", matiere=" + matiere + ", salle=" + salle + ", professeur=" + professeur + ", etudiant=" + etudiant + ", note=" + note + ", noteAvecCoef=" + noteAvecCoef + '}';
     }
-     
-        
 
 }

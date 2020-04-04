@@ -25,26 +25,26 @@ import com.sir.projet.Service.facade.SalleService;
 @RequestMapping("projetihm/salle")
 public class SalleRest {
     @Autowired
-    private SalleService salleSevice;
+    private SalleService salleService;
 
     @PostMapping("/")
     public int save(@RequestBody Salle salle) {
-        return salleSevice.save(salle);
+        return salleService.save(salle);
     }
 
     @GetMapping("/")
     public List<Salle> findAll() {
-        return salleSevice.findAll();
+        return salleService.findAll();
     }
 
     @GetMapping("/numero/{numero}")
     public Salle findByNumero(@PathVariable String numero) {
-        return salleSevice.findByNumero(numero);
+        return salleService.findByNumero(numero);
     }
 
     @DeleteMapping("/num/{numero}")
     public int deleteByNumero(@PathVariable String numero) {
-        return salleSevice.deleteByNumero(numero);
+        return salleService.deleteByNumero(numero);
     }
     
     
