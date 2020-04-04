@@ -31,23 +31,13 @@ public class Matiere implements Serializable{
 		public void setLibelle(String libelle) {
 			this.libelle = libelle;
 		}
-                @OneToMany(mappedBy = "matiere")
-                List<Controle> controles;
-
-    public List<Controle> getControles() {
-        return controles;
-    }
-
-    public void setControles(List<Controle> controles) {
-        this.controles = controles;
-    }
-
+               
+   
     @Override
     public int hashCode() {
         int hash = 5;
         hash = 11 * hash + Objects.hashCode(this.id);
         hash = 11 * hash + Objects.hashCode(this.libelle);
-        hash = 11 * hash + Objects.hashCode(this.controles);
         return hash;
     }
 
@@ -69,15 +59,12 @@ public class Matiere implements Serializable{
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
-        if (!Objects.equals(this.controles, other.controles)) {
-            return false;
-        }
-        return true;
+                return true;
     }
 
     @Override
     public String toString() {
-        return "Matiere{" + "id=" + id + ", libelle=" + libelle + ", controles=" + controles + '}';
+        return "Matiere{" + "id=" + id + ", libelle=" + libelle + ",  '}';";
     }
 
                    

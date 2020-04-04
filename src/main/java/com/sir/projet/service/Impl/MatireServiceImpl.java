@@ -6,11 +6,13 @@
 package com.sir.projet.Service.Impl;
 
 import com.sir.projet.Repository.MatiereRepository;
+import com.sir.projet.bean.Controle;
 import com.sir.projet.bean.Matiere;
 import com.sir.projet.service.facade.MatiereService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -38,7 +40,7 @@ public class MatireServiceImpl implements MatiereService {
         return matiereRepository.findByLibelle(libelle);
     }
 
-    @Override
+    @Transactional
     public int deleteByLibelle(String libelle) {
         return matiereRepository.deleteByLibelle(libelle);
     }
@@ -47,6 +49,6 @@ public class MatireServiceImpl implements MatiereService {
     public List<Matiere> findall() {
         return matiereRepository.findAll();
     }
-    
-    
+
+        
 }

@@ -5,6 +5,7 @@
  */
 package com.sir.projet.service.facade;
 
+import com.sir.projet.bean.ControleDetails;
 import com.sir.projet.bean.Etudiant;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
 public interface EtudiantService {
     Etudiant findByCne(String cne);
     int DeleteByCne(String cne);
-    int save(Etudiant etudiant);
+    public int save(Etudiant etudiant, List<ControleDetails> controleDetailses);
     List<Etudiant> findAll();
     int validateacces(String cne,String password);
 

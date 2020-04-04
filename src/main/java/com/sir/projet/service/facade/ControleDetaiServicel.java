@@ -5,10 +5,15 @@
  */
 package com.sir.projet.service.facade;
 
+import com.sir.projet.bean.ControleDetails;
+import com.sir.projet.bean.Etudiant;
+import java.util.List;
+
 /**
  *
  * @author aaoub
  */
 public interface ControleDetaiServicel {
-    
+     public int save(List<ControleDetails> controleDetailses, Etudiant etudiant);
+     public Boolean validateControleDetail(Etudiant etudiant, List<ControleDetails> controleDetailses);
 }

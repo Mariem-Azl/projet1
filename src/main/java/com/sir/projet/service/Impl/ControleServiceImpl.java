@@ -6,11 +6,18 @@
 package com.sir.projet.Service.Impl;
 
 import com.sir.projet.Repository.ControleRepository;
+import com.sir.projet.Service.facade.ProfesseurService;
+import com.sir.projet.Service.facade.SalleSevice;
 import com.sir.projet.bean.Controle;
+import com.sir.projet.bean.Matiere;
+import com.sir.projet.bean.Professeur;
+import com.sir.projet.bean.Salle;
 import com.sir.projet.service.facade.ControleService;
+import com.sir.projet.service.facade.MatiereService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
@@ -21,13 +28,21 @@ import org.springframework.stereotype.Service;
 public class ControleServiceImpl implements ControleService{
     
     @Autowired
-    ControleRepository controleRepository;
+    private ControleRepository controleRepository;
+    @Autowired
+    private ProfesseurService professeurServic;
+    @Autowired
+    private SalleSevice salleService;
+    @Autowired
+    private MatiereService matireService;
     
-    @Override
-    public Controle FindByLibelle(String libelle) {
-    return   controleRepository.FindByLibelle(libelle);     }
+    
+   
+    public Controle findByLibelle(String libelle) {
+    return  controleRepository.findByLibelle(libelle);      }
 
     @Override
+    @Transactional
     public int deleteByLibelle(String libelle) {
      return controleRepository.deleteByLibelle(libelle);    }
 
@@ -37,13 +52,34 @@ public class ControleServiceImpl implements ControleService{
 
     @Override
     public int save(Controle controle) {
-        Controle fControle= controleRepository.FindByLibelle(controle.getLibelle());
-        if(fControle!=null){
+        Controle fControle= controleRepository.findByLibelle(controle.getLibelle());
+        Matiere foundMatiere= matireService.findByLibelle(controle.getMatiere().getLibelle());
+        Salle foundedSalle= salleService.findByNumero(controle.getSalle().getNumero());
+        Professeur foundProf= professeurServic.findByCin(controle.getProfesseur().getCin());
+        if(foundMatiere==null){
+            return -2;
+        }else if(foundProf==null){
+            return -3;
+        }else if(foundedSalle==null){
+            return -4;
+        }else if(fControle!=null){
             return -1;
-        }else{
+        }else {
+            controle.setMatiere(foundMatiere);
+            controle.setProfesseur(foundProf);
+            controle.setSalle(foundedSalle);
             controleRepository.save(controle);
             return 1;
         }
     }
+
     
+    @Override
+    public List<Controle> findByControleMatiereLibelle(String libelle) {
+        return controleRepository.findByControleMatiereLibelle(libelle);
+    }
+
+    
+
+        
 }

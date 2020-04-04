@@ -1,5 +1,6 @@
 package com.sir.projet.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class Controle implements Serializable {
         this.matiere = matiere;
     }
 	   private String libelle;
-            @Temporal(javax.persistence.TemporalType.DATE)
+           @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
 	   private Date dateExam;
 	   private String duree;
 	   private int coef;

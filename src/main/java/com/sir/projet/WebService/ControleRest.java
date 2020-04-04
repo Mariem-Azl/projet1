@@ -27,9 +27,14 @@ public class ControleRest {
     @Autowired
    private  ControleService controleService;
     
+    @GetMapping("/matiere/libelle/{libelle}")
+    public List<Controle> findByControleMatiereLibelle(@PathVariable String libelle) {
+        return controleService.findByControleMatiereLibelle(libelle);
+    }
+    
     @GetMapping("/libelle/{libelle}")
-    public Controle FindByLibelle(@PathVariable String libelle) {
-        return controleService.FindByLibelle(libelle);
+    public Controle findByLibelle(@PathVariable String libelle) {
+        return controleService.findByLibelle(libelle);
     }
     @DeleteMapping("/libelle/{libelle}")
     public int deleteByLibelle(@PathVariable String libelle) {

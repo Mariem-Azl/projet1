@@ -13,10 +13,12 @@ import java.util.List;
  * @author aaoub
  */
 public interface ControleService {
-     Controle FindByLibelle(String libelle);
+    Controle findByLibelle(String libelle);
     int deleteByLibelle(String libelle);
     List<Controle> findAll();
     int save(Controle controle);
+    List<Controle> findByControleMatiereLibelle(String libelle);
+
 
     
 }
