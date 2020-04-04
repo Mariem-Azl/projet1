@@ -26,8 +26,8 @@ public class Parent implements Serializable {
 	    private String adresse;
 	    private Date dateNaisssance;
 	    private String lieuNaissance;
-         @OneToMany(mappedBy = "parent")
-         List<Etudiant> etudiants;
+            @OneToMany(mappedBy = "parent")
+            List<Etudiant> etudiants;
 
     public Etudiant getEtudiant() {
         return etudiant;

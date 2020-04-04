@@ -44,31 +44,44 @@ public class Controle implements Serializable {
            private Double note;
 	   private Double noteAvecCoef;
 
-    public Double getNote() {
-        return note;
+    public Long getId() {
+        return id;
     }
 
-    public void setNote(Double note) {
-        this.note = note;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Double getNoteAvecCoef() {
-        return noteAvecCoef;
+    public String getLibelle() {
+        return libelle;
     }
 
-    public void setNoteAvecCoef(Double noteAvecCoef) {
-        this.noteAvecCoef = noteAvecCoef;
-    }
-	public Long getId() {
-		return id;
-	}
-
-    public Etudiant getEtudiant() {
-        return etudiant;
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
     }
 
-    public void setEtudiant(Etudiant etudiant) {
-        this.etudiant = etudiant;
+    public Date getDateExam() {
+        return dateExam;
+    }
+
+    public void setDateExam(Date dateExam) {
+        this.dateExam = dateExam;
+    }
+
+    public String getDuree() {
+        return duree;
+    }
+
+    public void setDuree(String duree) {
+        this.duree = duree;
+    }
+
+    public int getCoef() {
+        return coef;
+    }
+
+    public void setCoef(int coef) {
+        this.coef = coef;
     }
 
     public Salle getSalle() {
@@ -86,45 +99,45 @@ public class Controle implements Serializable {
     public void setProfesseur(Professeur professeur) {
         this.professeur = professeur;
     }
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getLibelle() {
-		return libelle;
-	}
-	public void setLibelle(String libelle) {
-		this.libelle = libelle;
-	}
-	public Date getDateExam() {
-		return dateExam;
-	}
-	public void setDateExam(Date dateExam) {
-		this.dateExam = dateExam;
-	}
-	public String getDuree() {
-		return duree;
-	}
-	public void setDuree(String duree) {
-		this.duree = duree;
-	}
-	public int getCoef() {
-		return coef;
-	}
-	public void setCoef(int coef) {
-		this.coef = coef;
-	}
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
+    }
+
+    public Double getNoteAvecCoef() {
+        return noteAvecCoef;
+    }
+
+    public void setNoteAvecCoef(Double noteAvecCoef) {
+        this.noteAvecCoef = noteAvecCoef;
+    }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.id);
-        hash = 41 * hash + Objects.hashCode(this.libelle);
-        hash = 41 * hash + Objects.hashCode(this.dateExam);
-        hash = 41 * hash + Objects.hashCode(this.duree);
-        hash = 41 * hash + this.coef;
-        hash = 41 * hash + Objects.hashCode(this.matiere);
-        hash = 41 * hash + Objects.hashCode(this.salle);
-        hash = 41 * hash + Objects.hashCode(this.professeur);
+        hash = 67 * hash + Objects.hashCode(this.id);
+        hash = 67 * hash + Objects.hashCode(this.libelle);
+        hash = 67 * hash + Objects.hashCode(this.dateExam);
+        hash = 67 * hash + Objects.hashCode(this.duree);
+        hash = 67 * hash + this.coef;
+        hash = 67 * hash + Objects.hashCode(this.matiere);
+        hash = 67 * hash + Objects.hashCode(this.salle);
+        hash = 67 * hash + Objects.hashCode(this.professeur);
+        hash = 67 * hash + Objects.hashCode(this.etudiant);
+        hash = 67 * hash + Objects.hashCode(this.note);
+        hash = 67 * hash + Objects.hashCode(this.noteAvecCoef);
         return hash;
     }
 
@@ -164,15 +177,23 @@ public class Controle implements Serializable {
         if (!Objects.equals(this.professeur, other.professeur)) {
             return false;
         }
+        if (!Objects.equals(this.etudiant, other.etudiant)) {
+            return false;
+        }
+        if (!Objects.equals(this.note, other.note)) {
+            return false;
+        }
+        if (!Objects.equals(this.noteAvecCoef, other.noteAvecCoef)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Controle{" + "id=" + id + ", libelle=" + libelle + ", dateExam=" + dateExam + ", duree=" + duree + ", coef=" + coef + ", matiere=" + matiere + ", salle=" + salle + ", professeur=" + professeur + '}';
+        return "Controle{" + "id=" + id + ", libelle=" + libelle + ", dateExam=" + dateExam + ", duree=" + duree + ", coef=" + coef + ", matiere=" + matiere + ", salle=" + salle + ", professeur=" + professeur + ", etudiant=" + etudiant + ", note=" + note + ", noteAvecCoef=" + noteAvecCoef + '}';
     }
-
-    
-    
+     
+        
 
 }

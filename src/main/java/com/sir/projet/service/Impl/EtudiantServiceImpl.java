@@ -11,7 +11,6 @@ import com.sir.projet.bean.Controle;
 import com.sir.projet.bean.ControleDetails;
 import com.sir.projet.bean.Etudiant;
 import com.sir.projet.bean.Parent;
-import com.sir.projet.service.facade.ControleDetaiServicel;
 import com.sir.projet.service.facade.EtudiantService;
 //import com.sir.projet.service.ParentService;
 import java.util.List;
@@ -30,11 +29,9 @@ public class EtudiantServiceImpl implements EtudiantService {
     private EtudiantRepository etudiantRepository;
     @Autowired
     private ParentService parentService;
-    @Autowired
-    private ControleDetaiServicel controleDetaiServicel;
     
     
-    
+    @Override
     public Etudiant findByCne(String cne) {
       return etudiantRepository.findByCne(cne);    }
 
