@@ -29,13 +29,13 @@ public class ControleRest {
    private  ControleService controleService;
     
     @GetMapping("/etudiant/cne/{cne}")
-    public List<Controle> finByEtudiantCne(@PathVariable String cne) {
-        return controleService.finByEtudiantCne(cne);
+    public List<Controle> findByEtudiantCne(@PathVariable String cne) {
+        return controleService.findByEtudiantCne(cne);
     }
     
     @GetMapping("/matiere/libelle/{libelle}")
-    public List<Controle> findByControleMatiereLibelle(@PathVariable String libelle) {
-        return controleService.findByControleMatiereLibelle(libelle);
+    public List<Controle> findByMatiereLibelle(@PathVariable String libelle) {
+        return controleService.findByMatiereLibelle(libelle);
     }
     
     @GetMapping("/libelle/{libelle}")

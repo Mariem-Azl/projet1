@@ -34,7 +34,7 @@ public class EtudiantRest {
     }
     @DeleteMapping("/cne/{cne}")
     public int DeleteByCne(String cne) {
-        return etudiantService.DeleteByCne(cne);
+        return etudiantService.deleteByCne(cne);
     }
     @PostMapping("/")
     public int save(@RequestBody Etudiant etudiant) {

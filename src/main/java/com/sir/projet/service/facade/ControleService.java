@@ -6,7 +6,6 @@
 package com.sir.projet.service.facade;
 
 import com.sir.projet.bean.Controle;
-import com.sir.projet.bean.Etudiant;
 import java.util.List;
 
 /**
@@ -18,8 +17,8 @@ public interface ControleService {
     int deleteByLibelle(String libelle);
     List<Controle> findAll();
     int save(Controle controle);
-    List<Controle> findByControleMatiereLibelle(String libelle);
-    List<Controle> finByEtudiantCne(String cne);
+    List<Controle> findByMatiereLibelle(String libelle);
+    List<Controle> findByEtudiantCne(String cne);
     
     
 }

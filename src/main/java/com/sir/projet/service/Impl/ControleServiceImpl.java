@@ -8,7 +8,6 @@ package com.sir.projet.Service.Impl;
 import com.sir.projet.Repository.ControleRepository;
 import com.sir.projet.Service.facade.ProfesseurService;
 import com.sir.projet.bean.Controle;
-import com.sir.projet.bean.ControleDetails;
 import com.sir.projet.bean.Etudiant;
 import com.sir.projet.bean.Matiere;
 import com.sir.projet.bean.Professeur;
@@ -86,13 +85,13 @@ public class ControleServiceImpl implements ControleService{
 
     
     @Override
-    public List<Controle> findByControleMatiereLibelle(String libelle) {
-        return controleRepository.findByControleMatiereLibelle(libelle);
+    public List<Controle> findByMatiereLibelle(String libelle) {
+        return controleRepository.findByMatiereLibelle(libelle);
     }
 
     @Override
-    public List<Controle> finByEtudiantCne(String cne) {
-        return controleRepository.finByEtudiantCne(cne);
+    public List<Controle> findByEtudiantCne(String cne) {
+        return controleRepository.findByEtudiantCne(cne);
     }
 
     
