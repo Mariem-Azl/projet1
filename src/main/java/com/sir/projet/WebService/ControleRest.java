@@ -6,6 +6,7 @@
 package com.sir.projet.WebService;
 
 import com.sir.projet.bean.Controle;
+import com.sir.projet.bean.Etudiant;
 import com.sir.projet.service.facade.ControleService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ControleRest {
     @Autowired
    private  ControleService controleService;
+    
+    @GetMapping("/etudiant/cne/{cne}")
+    public List<Controle> finByEtudiantCne(@PathVariable String cne) {
+        return controleService.finByEtudiantCne(cne);
+    }
     
     @GetMapping("/matiere/libelle/{libelle}")
     public List<Controle> findByControleMatiereLibelle(@PathVariable String libelle) {

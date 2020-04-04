@@ -25,22 +25,23 @@ public class Etudiant implements Serializable {
     private String sex;
     private String cne;
     private String password;
-    @OneToMany(mappedBy = "etudiant")
-    private List<ControleDetails> controleDetails;
+  //  @OneToMany(mappedBy = "etudiant")
+    //private List<ControleDetails> controleDetails;
     @ManyToOne
     private Parent parent;
-
+    
     public Parent getParent() {
         return parent;
     }
 
-    public List<ControleDetails> getControleDetails() {
+    
+      /* public List<ControleDetails> getControleDetails() {
         return controleDetails;
     }
 
     public void setControleDetails(List<ControleDetails> controleDetails) {
         this.controleDetails = controleDetails;
-    }
+    }*/
 
     public void setParent(Parent parent) {
         this.parent = parent;
@@ -110,7 +111,7 @@ public class Etudiant implements Serializable {
         hash = 13 * hash + Objects.hashCode(this.sex);
         hash = 13 * hash + Objects.hashCode(this.cne);
         hash = 13 * hash + Objects.hashCode(this.password);
-        hash = 13 * hash + Objects.hashCode(this.controleDetails);
+        //hash = 13 * hash + Objects.hashCode(this.controleDetails);
         hash = 13 * hash + Objects.hashCode(this.parent);
         return hash;
     }
@@ -151,9 +152,9 @@ public class Etudiant implements Serializable {
         if (!Objects.equals(this.dateNaissance, other.dateNaissance)) {
             return false;
         }
-        if (!Objects.equals(this.controleDetails, other.controleDetails)) {
+        /*if (!Objects.equals(this.controleDetails, other.controleDetails)) {
             return false;
-        }
+        }*/
         if (!Objects.equals(this.parent, other.parent)) {
             return false;
         }
@@ -162,9 +163,12 @@ public class Etudiant implements Serializable {
 
     @Override
     public String toString() {
-        return "Etudiant{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", lieuNaissance=" + lieuNaissance + ", sex=" + sex + ", cne=" + cne + ", password=" + password + ", controleDetails=" + controleDetails + ", parent=" + parent + '}';
+        return "Etudiant{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNaissance=" + dateNaissance + ", lieuNaissance=" + lieuNaissance + ", sex=" + sex + ", cne=" + cne + ", password=" + password + ", parent=" + parent + '}';
     }
 
+    
+    
+    
        
 
 }

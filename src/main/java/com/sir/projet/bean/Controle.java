@@ -39,9 +39,37 @@ public class Controle implements Serializable {
            private Salle salle;
            @ManyToOne
            private Professeur professeur;
+           @ManyToOne
+           private Etudiant etudiant;
+           private Double note;
+	   private Double noteAvecCoef;
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
+    }
+
+    public Double getNoteAvecCoef() {
+        return noteAvecCoef;
+    }
+
+    public void setNoteAvecCoef(Double noteAvecCoef) {
+        this.noteAvecCoef = noteAvecCoef;
+    }
 	public Long getId() {
 		return id;
 	}
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
 
     public Salle getSalle() {
         return salle;

@@ -9,12 +9,16 @@ import com.sir.projet.Repository.ControleRepository;
 import com.sir.projet.Service.facade.ProfesseurService;
 import com.sir.projet.Service.facade.SalleSevice;
 import com.sir.projet.bean.Controle;
+import com.sir.projet.bean.ControleDetails;
+import com.sir.projet.bean.Etudiant;
 import com.sir.projet.bean.Matiere;
 import com.sir.projet.bean.Professeur;
 import com.sir.projet.bean.Salle;
 import com.sir.projet.service.facade.ControleService;
+import com.sir.projet.service.facade.EtudiantService;
 import com.sir.projet.service.facade.MatiereService;
 import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +39,8 @@ public class ControleServiceImpl implements ControleService{
     private SalleSevice salleService;
     @Autowired
     private MatiereService matireService;
+    @Autowired
+    private EtudiantService etudiantService;
     
     
    
@@ -52,6 +58,7 @@ public class ControleServiceImpl implements ControleService{
 
     @Override
     public int save(Controle controle) {
+        Etudiant etudiant=etudiantService.findByCne(controle.getEtudiant().getCne());
         Controle fControle= controleRepository.findByLibelle(controle.getLibelle());
         Matiere foundMatiere= matireService.findByLibelle(controle.getMatiere().getLibelle());
         Salle foundedSalle= salleService.findByNumero(controle.getSalle().getNumero());
@@ -62,9 +69,13 @@ public class ControleServiceImpl implements ControleService{
             return -3;
         }else if(foundedSalle==null){
             return -4;
+        }else if(etudiant==null){
+            return -5;
         }else if(fControle!=null){
             return -1;
         }else {
+            controle.setNoteAvecCoef(controle.getNote()*controle.getCoef());
+            controle.setEtudiant(etudiant);
             controle.setMatiere(foundMatiere);
             controle.setProfesseur(foundProf);
             controle.setSalle(foundedSalle);
@@ -79,7 +90,12 @@ public class ControleServiceImpl implements ControleService{
         return controleRepository.findByControleMatiereLibelle(libelle);
     }
 
-    
+    @Override
+    public List<Controle> finByEtudiantCne(String cne) {
+        return controleRepository.finByEtudiantCne(cne);
+    }
 
+    
+   
         
 }

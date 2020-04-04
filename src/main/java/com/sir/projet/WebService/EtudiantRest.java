@@ -38,7 +38,7 @@ public class EtudiantRest {
     }
     @PostMapping("/")
     public int save(@RequestBody Etudiant etudiant) {
-        return etudiantService.save(etudiant,etudiant.getControleDetails());
+        return etudiantService.save(etudiant);
     }
     @GetMapping("/")
     public List<Etudiant> findAll() {
