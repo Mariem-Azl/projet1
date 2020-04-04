@@ -5,7 +5,6 @@
  */
 package com.sir.projet.WebService;
 
-import com.sir.projet.Service.facade.SalleSevice;
 import com.sir.projet.bean.Salle;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import com.sir.projet.Service.facade.SalleService;
 
 /**
  *
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("projetihm/salle")
 public class SalleRest {
     @Autowired
-    private SalleSevice salleSevice;
+    private SalleService salleSevice;
 
     @PostMapping("/")
     public int save(@RequestBody Salle salle) {

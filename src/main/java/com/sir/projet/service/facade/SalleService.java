@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author HP
  */
-public interface SalleSevice {
+public interface SalleService {
     
      int save(Salle salle);
     List<Salle>findAll();

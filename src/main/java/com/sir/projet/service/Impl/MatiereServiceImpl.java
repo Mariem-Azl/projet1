@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author aaoub
  */
 @Service
-public class MatireServiceImpl implements MatiereService {
+public class MatiereServiceImpl implements MatiereService {
 
     @Autowired
     private MatiereRepository matiereRepository;

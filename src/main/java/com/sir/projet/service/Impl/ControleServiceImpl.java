@@ -7,7 +7,6 @@ package com.sir.projet.Service.Impl;
 
 import com.sir.projet.Repository.ControleRepository;
 import com.sir.projet.Service.facade.ProfesseurService;
-import com.sir.projet.Service.facade.SalleSevice;
 import com.sir.projet.bean.Controle;
 import com.sir.projet.bean.ControleDetails;
 import com.sir.projet.bean.Etudiant;
@@ -22,6 +21,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.sir.projet.Service.facade.SalleService;
 
 /**
  *
@@ -36,7 +36,7 @@ public class ControleServiceImpl implements ControleService{
     @Autowired
     private ProfesseurService professeurServic;
     @Autowired
-    private SalleSevice salleService;
+    private SalleService salleService;
     @Autowired
     private MatiereService matireService;
     @Autowired
