@@ -91,8 +91,8 @@ public class ControleServiceImpl implements ControleService{
     }
 
     @Override
-    public List<Controle> finByEtudiantCne(String cne) {
-        return controleRepository.finByEtudiantCne(cne);
+    public List<Controle> findByEtudiantCne(String cne) {
+        return controleRepository.findByEtudiantCne(cne);
     }
 
     

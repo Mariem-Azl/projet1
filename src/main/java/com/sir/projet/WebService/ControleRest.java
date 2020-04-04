@@ -30,7 +30,7 @@ public class ControleRest {
     
     @GetMapping("/etudiant/cne/{cne}")
     public List<Controle> finByEtudiantCne(@PathVariable String cne) {
-        return controleService.finByEtudiantCne(cne);
+        return controleService.findByEtudiantCne(cne);
     }
     
     @GetMapping("/matiere/libelle/{libelle}")

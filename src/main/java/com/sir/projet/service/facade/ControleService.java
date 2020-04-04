@@ -19,7 +19,7 @@ public interface ControleService {
     List<Controle> findAll();
     int save(Controle controle);
     List<Controle> findByControleMatiereLibelle(String libelle);
-    List<Controle> finByEtudiantCne(String cne);
+    List<Controle> findByEtudiantCne(String cne);
     
     
 }
